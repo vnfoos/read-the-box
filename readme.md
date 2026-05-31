@@ -8,7 +8,7 @@ Dự án phát triển Chrome Extension sử dụng ngôn ngữ lập trình **G
 
 Để chạy được dự án này trên **Windows 11**, bạn cần cài đặt các công cụ global sau đây.
 
-### 1. Cài đặt các công cụ hệ thống (Global)
+### Cài đặt các công cụ hệ thống (Global)
 Mở Terminal (PowerShell hoặc Command Prompt với quyền Admin) và chạy các lệnh sau:
 
 ```bash
@@ -19,7 +19,10 @@ winget install Casey.Just
 npm install -g chokidar-cli
 ```
 
+## ▶️ Cách sử dụng
+
 open vntq on chrome tab, e.g: http://vietnamthuquan.eu/(X(1)S(v5xxuh45u3svbsjc1o3dp155))/truyen/truyen.aspx?tid=2qtqv3m3237n1nnn0n3n1n31n343tq83a3q3m3237nvn#phandau
+
 open gemini on chrome tab: https://gemini.google.com/
 
 open the extension, click 'load' then click 'play'

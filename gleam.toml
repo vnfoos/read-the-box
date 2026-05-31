@@ -1,0 +1,12 @@
+name = "read_the_box"
+version = "1.0.0"
+target = "javascript"
+
+[dependencies]
+gleam_stdlib = ">= 0.44.0 and < 2.0.0"
+lustre = ">= 5.6.0 and < 6.0.0"
+
+saola = { path = "D:/viwork/saola/saola" }
+
+[dev_dependencies]
+lustre_dev_tools = ">= 2.3.6 and < 3.0.0"

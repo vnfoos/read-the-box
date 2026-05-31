@@ -1,0 +1,31 @@
+@use 'sass:color';
+$neon-color: #8a2be2;
+
+$neon-glow:
+  0 0 1px $neon-color,
+  0 0 2px $neon-color,
+  0 0 3px $neon-color,
+  0 0 3px color.adjust($neon-color, $lightness: 10%),
+  0 0 7px color.adjust($neon-color, $lightness: 15%);
+
+.block {
+  width: 100%;
+  height: 360px;
+  overflow-y: auto;
+  background-color: #fafafa;
+  border: 1px solid #242424;
+  background: #313131;
+  border-radius: 12px;
+  padding: 22px 30px;
+  outline: none;
+  font-size: 16px;
+  line-height: 25px;
+  color: #d3d3d3;
+
+  &:focus {
+    border-color: $neon-color;
+    background: #333;
+    color: #fff;
+    box-shadow: $neon-glow;
+  }
+}

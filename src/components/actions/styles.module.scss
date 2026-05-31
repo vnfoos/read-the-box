@@ -1,0 +1,77 @@
+@use 'sass:color';
+
+$ra-bg: #0d1117;
+$ra-border-pink: #e040fb;
+$ra-border-cyan: #00e5ff;
+$ra-text: #fff;
+$ra-radius: 999px;
+
+.block {
+  padding: 20px 0;
+}
+
+@keyframes ra-border-spin {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+@keyframes ra-pulse-glow {
+  0%,
+  100% {
+    box-shadow:
+      0 0 8px 2px rgba($ra-border-pink, 0.6),
+      0 0 24px 6px rgba($ra-border-cyan, 0.4);
+  }
+  50% {
+    box-shadow:
+      0 0 14px 4px rgba($ra-border-pink, 0.9),
+      0 0 40px 12px rgba($ra-border-cyan, 0.6);
+  }
+}
+
+.actions-group.actions-group {
+  display: inline-block;
+  padding: 3px;
+  border-radius: $ra-radius;
+  background: linear-gradient(135deg, $ra-border-pink, $ra-border-cyan, $ra-border-pink);
+  background-size: 200% 200%;
+  animation:
+    ra-border-spin 3s linear infinite,
+    ra-pulse-glow 2.5s ease-in-out infinite;
+}
+
+.button {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 28px;
+  border: none;
+  border-radius: $ra-radius;
+  color: $ra-text;
+  font-family: 'Segoe UI', sans-serif;
+  font-size: 15px;
+  font-weight: 400;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: background 0.2s ease;
+  outline: none;
+  box-shadow: none;
+
+  &:hover {
+    background: color.adjust($ra-bg, $lightness: 6%);
+  }
+
+  &:active {
+    background: color.adjust($ra-bg, $lightness: 2%);
+    transform: scale(0.97);
+  }
+}

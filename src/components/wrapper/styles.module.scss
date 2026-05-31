@@ -1,0 +1,66 @@
+@use 'sass:color';
+$primary-header-color: #8a2be2;
+$subtitle-text-color: rgba(255, 255, 255, 0.7);
+$bg-dark: #0a0a0a;
+$bg-dark-inside: #131313;
+$border-dark-inside: #242424;
+
+.block {
+  background: $bg-dark;
+  min-height: 100svh;
+  align-items: start;
+
+  display: grid;
+  grid-template-columns:
+    1fr
+    min(880px, 100% - 2rem)
+    1fr;
+
+  &.-dark {
+    background: #131313;
+  }
+
+  &.-light {
+    background: #d5cdcd;
+  }
+}
+
+.wrapper {
+  min-height: 100svh;
+  grid-column: 2;
+}
+
+// Hiệu ứng phát sáng neon phức tạp
+$neon-glow:
+  0 0 10px $primary-header-color,
+  0 0 20px $primary-header-color,
+  0 0 30px $primary-header-color,
+  0 0 30px color.adjust($primary-header-color, $lightness: 10%),
+  0 0 70px color.adjust($primary-header-color, $lightness: 15%);
+
+.header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 2rem 0;
+  font-family: 'Segoe UI', 'Montserrat', sans-serif;
+
+  .title {
+    color: $primary-header-color;
+    font-size: 30px;
+    font-weight: 300;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    text-shadow: $neon-glow;
+  }
+
+  .sub-title {
+    color: $subtitle-text-color;
+    font-size: 23px;
+    font-weight: 300;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    opacity: 0.9;
+    margin: 0 0 26px;
+  }
+}

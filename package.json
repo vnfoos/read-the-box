@@ -1,0 +1,12 @@
+{
+  "name": "read_the_box",
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "build": "gleam build && vite build"
+  },
+  "devDependencies": {
+    "sass": "11.11.0",
+    "vite": "6.3.5"
+  }
+}

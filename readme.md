@@ -1,4 +1,4 @@
-# 🚀 Dự án Chrome Extension (Gleam & Lustre)
+# 🚀 Dự án Text To Speech (Chrome Extension = Gleam & Lustre & Saola)
 
 Dự án phát triển Chrome Extension sử dụng ngôn ngữ lập trình **Gleam**, framework **Lustre** và công cụ build **Just**. Hỗ trợ tự động theo dõi thay đổi file (Hot-reload) trong quá trình phát triển.
 

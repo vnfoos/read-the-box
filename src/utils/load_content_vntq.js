@@ -1,7 +1,6 @@
 async function askGeminiWeb(tabId, text) {
   const prompt = `Sửa lỗi chính tả cho nội dung sau, chỉ trả về nội dung đã sửa, không giải thích, không thêm bất kỳ nội dung nào khác:\n\n${text}`;
 
-  // Bước 1: Inject text và submit
   await chrome.scripting.executeScript({
     target: { tabId },
     func: (promptText) => {
@@ -16,7 +15,6 @@ async function askGeminiWeb(tabId, text) {
     args: [prompt]
   });
 
-  // Bước 2: Đợi 3s rồi poll
   await new Promise(r => setTimeout(r, 3000));
 
   let response = "";
@@ -46,11 +44,9 @@ async function askGeminiWeb(tabId, text) {
 }
 
 export function load_content_vntq(on_done) {
-  // Tìm tab vntq
   chrome.tabs.query({ url: "http://vietnamthuquan.eu/*" }, (vntqTabs) => {
     if (vntqTabs.length === 0) { on_done(""); return; }
 
-    // Tìm tab Gemini
     chrome.tabs.query({ url: "https://gemini.google.com/*" }, (geminiTabs) => {
       if (geminiTabs.length === 0) {
         console.error("Không tìm thấy tab Gemini");
@@ -60,7 +56,6 @@ export function load_content_vntq(on_done) {
 
       const geminiTabId = geminiTabs[0].id;
 
-      // Lấy content từ vntq
       chrome.scripting.executeScript({
         target: { tabId: vntqTabs[0].id },
         func: () => {

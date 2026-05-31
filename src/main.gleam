@@ -2,9 +2,7 @@ import gleam/io
 import lustre
 import lustre/attribute.{attribute}
 import lustre/effect.{type Effect}
-import lustre/element.{text}
-import lustre/element/html
-import lustre/event
+import lustre/element
 
 import components/actions/actions
 import components/text_container/text_container

@@ -12,17 +12,24 @@ Dự án phát triển Chrome Extension sử dụng ngôn ngữ lập trình **G
 Mở Terminal (PowerShell hoặc Command Prompt với quyền Admin) và chạy các lệnh sau:
 
 ```bash
-# Cài đặt trình quản lý tác vụ Just (Casey.Just)
+# Bước 1: Cài đặt Erlang (Nền tảng bắt buộc để chạy Gleam)
+winget install Ericsson.Erlang
+
+# Bước 2: Cài đặt ngôn ngữ Gleam
+winget install Gleam.Gleam
+
+# Bước 3: Cài đặt trình quản lý tác vụ Just (Casey.Just)
 winget install Casey.Just
 
-# Cài đặt công cụ theo dõi thay đổi file (Yêu cầu đã cài Node.js)
+# Bước 4: Cài đặt công cụ tự động reload file (Yêu cầu đã cài Node.js)
 npm install -g chokidar-cli
 ```
 
-## ▶️ Cách sử dụng
+## ▶️ Hướng dẫn sử dụng
 
-open vntq on chrome tab, e.g: http://vietnamthuquan.eu/(X(1)S(v5xxuh45u3svbsjc1o3dp155))/truyen/truyen.aspx?tid=2qtqv3m3237n1nnn0n3n1n31n343tq83a3q3m3237nvn#phandau
+Sau khi Extension đã được nạp vào Chrome, bạn làm theo các bước sau:
 
-open gemini on chrome tab: https://gemini.google.com/
-
-open the extension, click 'load' then click 'play'
+1. **Mở các trang web mục tiêu:**
+   * 📄 [Việt Nam Thư Quán](ví dụ http://vietnamthuquan.eu/(X(1)S(v5xxuh45u3svbsjc1o3dp155))/truyen/truyen.aspx?tid=2qtqv3m3237n1nnn0n3n1n31n343tq83a3q3m3237nvn#phandau)
+   * 🤖 [Google Gemini AI](https://gemini.google.com/)
+2. **Kích hoạt:** Click vào icon extension, nhấn **Load** rồi nhấn **Play**.

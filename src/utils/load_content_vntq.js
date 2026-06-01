@@ -23,7 +23,8 @@ async function askGeminiWeb(tabId, text) {
       target: { tabId },
       func: () => {
         const isLoading = !!document.querySelector('button[aria-label="Stop streaming"]');
-        const responses = document.querySelectorAll('message-content .markdown');
+
+        const responses = document.querySelectorAll('div.markdown');
         const lastText = responses[responses.length - 1]?.innerText ?? "";
         return { isLoading, text: lastText };
       }

@@ -23,6 +23,7 @@ pub type Msg {
   Play
   Pause
   Stop
+  Clear
   UserTextChanged(String)
   LoadContent
   ContentLoaded(String)
@@ -70,16 +71,20 @@ fn update(model: Model, msg: Msg) -> #(Model, Effect(Msg)) {
         })
       #(model, fx)
     }
-    ContentLoaded(t) -> #(
-      Model(..model, text: model.text <> "\n" <> t),
-      effect.none(),
-    )
+    ContentLoaded(t) -> {
+      let new_text = model.text <> "\n" <> t
+      speech.play(new_text, 1.0)
+      #(Model(..model, text: new_text, status: Playing), effect.none())
+    }
+    Clear -> {
+      #(Model(..model, text: ""), effect.none())
+    }
   }
 }
 
 fn view(model: Model) -> element.Element(Msg) {
   wrapper.view([
     text_container.view(model.text, UserTextChanged),
-    actions.view(LoadContent, Play, Pause, Stop),
+    actions.view(LoadContent, Play, Pause, Stop, Clear),
   ])
 }

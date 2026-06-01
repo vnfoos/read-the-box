@@ -23,6 +23,7 @@ pub fn view(
   on_play: msg,
   on_pause: msg,
   on_stop: msg,
+  on_clear: msg,
 ) -> Element(msg) {
   html.div([add_class([FromString("block -dark")])], [
     button_group.button_group_full(
@@ -64,6 +65,14 @@ pub fn view(
           [
             text("⏹ Stop"),
           ],
+        ),
+        html.button(
+          [
+            attribute.type_("button"),
+            event.on_click(on_clear),
+            add_class([FromString("button btn btn-outline")]),
+          ],
+          [text("🗑 Clear")],
         ),
       ],
       button_group.ButtonGroupAttrs(

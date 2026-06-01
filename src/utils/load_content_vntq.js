@@ -1,13 +1,16 @@
 async function askGeminiWeb(tabId, text) {
   const prompt = `Sửa lỗi chính tả cho nội dung sau, chỉ trả về nội dung đã sửa, không giải thích, không thêm bất kỳ nội dung nào khác:\n\n${text}`;
 
+  // Bước 1: Inject text và submit
   await chrome.scripting.executeScript({
-    target: { tabId },
+    target: { tabId, frameIds: [0] },
+    world: "MAIN",
     func: (promptText) => {
       const p = document.querySelector('div[role="textbox"] p');
       p.focus();
-      p.innerText = promptText;
-      p.dispatchEvent(new Event('input', { bubbles: true }));
+      document.execCommand('selectAll', false, null);
+      document.execCommand('delete', false, null);
+      document.execCommand('insertText', false, promptText);
       setTimeout(() => {
         document.querySelector('button[aria-label="Send message"]')?.click();
       }, 500);
@@ -15,15 +18,18 @@ async function askGeminiWeb(tabId, text) {
     args: [prompt]
   });
 
-  await new Promise(r => setTimeout(r, 3000));
+  // Bước 2: Đợi 5s cho Gemini bắt đầu respond
+  await new Promise(r => setTimeout(r, 5000));
 
+  // Bước 3: Poll đến khi không còn loading
   let response = "";
-  for (let i = 0; i < 20; i++) {
+  for (let i = 0; i < 60; i++) {  // tối đa 60 x 2s = 2 phút
     const results = await chrome.scripting.executeScript({
-      target: { tabId },
+      target: { tabId, frameIds: [0] },
+      world: "MAIN",
       func: () => {
+        // Check loading bằng nút Stop streaming
         const isLoading = !!document.querySelector('button[aria-label="Stop streaming"]');
-
         const responses = document.querySelectorAll('div.markdown');
         const lastText = responses[responses.length - 1]?.innerText ?? "";
         return { isLoading, text: lastText };
@@ -33,12 +39,13 @@ async function askGeminiWeb(tabId, text) {
     const { isLoading, text } = results?.[0]?.result ?? {};
     console.log(`Poll ${i + 1}: loading=${isLoading}, text length=${text?.length}`);
 
-    if (!isLoading && text) {
+    // Chỉ lấy về khi Gemini đã done hoàn toàn
+    if (!isLoading && text && text.length > 0) {
       response = text;
       break;
     }
 
-    await new Promise(r => setTimeout(r, 1500));
+    await new Promise(r => setTimeout(r, 2000));  // đợi 2s mỗi lần poll
   }
 
   return response || text;

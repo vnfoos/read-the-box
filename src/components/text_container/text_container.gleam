@@ -16,7 +16,7 @@ pub fn view(value: String, on_change: fn(String) -> msg) -> Element(msg) {
       extra_attrs: TextareaExtraAttrs(
         "",
         "bio",
-        "Load content from vietnamthuquan tab",
+        "Load content from Source tab",
         Some(4),
         False,
         False,
